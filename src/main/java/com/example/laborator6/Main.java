@@ -130,9 +130,13 @@ public class Main extends Application {
         Button button4 = new Button("Submit");
         button4.setOnAction(e -> window.setScene(entryScene));
 
+        Button stdentsEnrolledButton = new Button("StudentsEnrolled");
+
+
         VBox layout4 = new VBox();
-        layout4.getChildren().addAll(labelFirstName2, firstNameInput2, labelLastName2, lastNameInput2, labelID2, idInput2, button4);
+        layout4.getChildren().addAll(labelFirstName2, firstNameInput2, labelLastName2, lastNameInput2, labelID2, idInput2, button4,stdentsEnrolledButton);
         teacherScene = new Scene(layout4, 400, 400);
+        layout4.setAlignment(Pos.BASELINE_CENTER);
 
 //        //Layout3
 //        StackPane layout3 = new StackPane();

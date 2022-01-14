@@ -41,7 +41,7 @@ public class RegistrationSystem {
      * @throws ExceptionNotFound      the exception not found
      * @throws AlreadyExistsException the already exists exception
      */
-    public void register(int studentId, int courseId) throws ExceptionLimitReached, ExceptionMaximCredits, SQLException, ExceptionNotFound, AlreadyExistsException {
+    public void register(long studentId, long courseId) throws ExceptionLimitReached, ExceptionMaximCredits, SQLException, ExceptionNotFound, AlreadyExistsException {
         int studentIdx = -1;
 
         for(int i=0; i < studentRepository.getAll().size(); i++) {
@@ -89,7 +89,7 @@ public class RegistrationSystem {
 
     public int totalCreditsOfaStudent(Student student) throws SQLException{
         int totalCredits = 0;
-        for(int courseId : student.getEnrolledCourses()){
+        for(long courseId : student.getEnrolledCourses()){
             for(Course course : courseRepository.getAll()){
                 if(course.getCourseId() == courseId){
                     totalCredits += course.getCredits();
@@ -111,7 +111,7 @@ public class RegistrationSystem {
         return coursesFreePlaces;
     }
 
-    public List<Student> retrieveStudentsEnrolledForACourse(int courseId) throws SQLException, ExceptionNotFound {
+    public List<Student> retrieveStudentsEnrolledForACourse(long courseId) throws SQLException, ExceptionNotFound {
         List<Student> studentsEnrolled = new ArrayList<>();
         for(Student student : studentRepository.getAll()){
             if(student.getEnrolledCourses().contains(courseId)){
@@ -163,7 +163,7 @@ public class RegistrationSystem {
             throw new ExceptionNotTeaching("The teacher does not teach this course!");
         }
 
-        for (int studentID : course.getStudentsEnrolled()) {
+        for (long studentID : course.getStudentsEnrolled()) {
             for (Student student : studentRepository.getAll()) {
                 if (student.getStudentId() == studentID) {
                     student.deleteCourse(courseID);
@@ -214,7 +214,7 @@ public class RegistrationSystem {
 
 
 
-    public void addCourse(int courseId, String name, int maxEnrollment, int credits, int teacherId) throws AlreadyExistsException, ExceptionNotFound, SQLException {
+    public void addCourse(long courseId, String name, int maxEnrollment, int credits, long teacherId) throws AlreadyExistsException, ExceptionNotFound, SQLException {
         int teacherIndex = 0;
         for(Course course : courseRepository.getAll()){
             if(course.getCourseId() == courseId){

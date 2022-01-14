@@ -4,14 +4,14 @@ import java.util.List;
 
 public class Course implements Comparable<Course> {
 
-    private int courseId;
+    private long courseId;
     private String name;
-    private int teacherId;
+    private long teacherId;
     private int maxEnrollment;
-    private List<Integer> studentsEnrolled;
+    private List<Long> studentsEnrolled;
     private int credits;
 
-    public Course( int courseId, String name,  int maxEnrollment, int credits, int teacherId, List<Integer> studentsEnrolled) {
+    public Course( long courseId, String name,  int maxEnrollment, int credits, long teacherId, List<Long> studentsEnrolled) {
         this.courseId = courseId;
         this.name = name;
         this.maxEnrollment = maxEnrollment;
@@ -23,11 +23,11 @@ public class Course implements Comparable<Course> {
 
     }
 
-    public void addStudent(int studetId){
+    public void addStudent(long studetId){
         studentsEnrolled.add(studetId);
     }
 
-    public void removeStudent(int studentId){
+    public void removeStudent(long studentId){
         studentsEnrolled.remove(studentId);
     }
 
@@ -36,11 +36,11 @@ public class Course implements Comparable<Course> {
     }
 
 
-    public int getCourseId() {
+    public long getCourseId() {
         return courseId;
     }
 
-    public void setCourseId(int courseId) {
+    public void setCourseId(long courseId) {
         this.courseId = courseId;
     }
 
@@ -52,11 +52,11 @@ public class Course implements Comparable<Course> {
         this.name = name;
     }
 
-    public int getTeacherId() {
+    public long getTeacherId() {
         return teacherId;
     }
 
-    public void setTeacherId(int teacherId) {
+    public void setTeacherId(long teacherId) {
         this.teacherId = teacherId;
     }
 
@@ -68,11 +68,11 @@ public class Course implements Comparable<Course> {
         this.maxEnrollment = maxEnrollment;
     }
 
-    public List<Integer> getStudentsEnrolled() {
+    public List<Long> getStudentsEnrolled() {
         return studentsEnrolled;
     }
 
-    public void setStudentsEnrolled(List<Integer> studentsEnrolled) {
+    public void setStudentsEnrolled(List<Long> studentsEnrolled) {
         this.studentsEnrolled = studentsEnrolled;
     }
 

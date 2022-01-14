@@ -5,20 +5,20 @@ import java.util.List;
 
 public class Student extends Person implements Comparable<Student> {
 
-    private int studentId;
-    private List<Integer> enrolledCourses;
+    private long studentId;
+    private List<Long> enrolledCourses;
 
-    public Student(String firstName, String lastName,  List<Integer> enrolledCourses, int studentId){
+    public Student(String firstName, String lastName,  List<Long> enrolledCourses, long studentId){
         super(firstName, lastName);
         this.studentId = studentId;
         this.enrolledCourses = enrolledCourses;
     }
 
-    public void addCourse(int courseId){
+    public void addCourse(long courseId){
         enrolledCourses.add(courseId);
     }
 
-    public void deleteCourse(int courseId){
+    public void deleteCourse(long courseId){
         enrolledCourses.remove(courseId);
     }
 
@@ -27,7 +27,7 @@ public class Student extends Person implements Comparable<Student> {
     }
 
 
-    public int getStudentId() {
+    public long getStudentId() {
         return studentId;
     }
 
@@ -35,11 +35,11 @@ public class Student extends Person implements Comparable<Student> {
         this.studentId = studentId;
     }
 
-    public List<Integer> getEnrolledCourses() {
+    public List<Long> getEnrolledCourses() {
         return enrolledCourses;
     }
 
-    public void setEnrolledCourses(List<Integer> enrolledCourses) {
+    public void setEnrolledCourses(List<Long> enrolledCourses) {
         this.enrolledCourses = enrolledCourses;
     }
 

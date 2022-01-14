@@ -51,13 +51,13 @@ public class StudentRepository implements ICrudRepository<Student> {
             String LastName = resultSet.getString("LastName");
             int studentId = resultSet.getInt("Student_id");
 
-            List<Integer> courses = new ArrayList<>();
+            List<Long> courses = new ArrayList<>();
             String queryCoursesEnrolled = "SELECT course_id FROM school.studentsenrolledtocourse " +
                     "WHERE student_id= " + studentId;
             Statement statement1 = connection.createStatement();
             ResultSet resultSet1 = statement1.executeQuery(queryCoursesEnrolled);
             while(resultSet1.next()){
-                courses.add(resultSet1.getInt("course_id"));
+                courses.add(resultSet1.getLong("course_id"));
             }
             statement1.close();
 
@@ -81,7 +81,7 @@ public class StudentRepository implements ICrudRepository<Student> {
         Statement statement = connection.createStatement();
         statement.executeUpdate(query);
 
-        List<Integer> updatedEnrolledCourses = obj.getEnrolledCourses();
+        List<Long> updatedEnrolledCourses = obj.getEnrolledCourses();
 
         String queryEnrollment = "SELECT course_id FROM studentsenrolledtocourse" +
                 "WHERE student_id= " +obj.getStudentId();

@@ -46,13 +46,13 @@ public class TeacherRepository implements ICrudRepository<Teacher>{
             String firstName = resultSet.getString("FirstName");
             String lastName = resultSet.getString("LastName");
 
-            List<Integer> courses = new ArrayList<>();
+            List<Long> courses = new ArrayList<>();
             String queryTeacherCourse = "SELECT course.Course_id FROM school.course " +
                     "INNER JOIN school.teacher ON course.teacher_id=teacher.Teacher_id WHERE course.teacher_id=" +teacherId;
             Statement statement1 = connection.createStatement();
             ResultSet resultSet1 = statement1.executeQuery(queryTeacherCourse);
             while(resultSet1.next()){
-                courses.add(resultSet1.getInt("course_id"));
+                courses.add(resultSet1.getLong("course_id"));
 
             }
             statement1.close();

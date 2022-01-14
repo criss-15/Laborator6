@@ -45,18 +45,18 @@ public class CourseRepository implements ICrudRepository<Course> {
         String queryGetAllCourses = "SELECT * FROM school.course";
         ResultSet resultSet = statement.executeQuery(queryGetAllCourses);
         while(resultSet.next()){
-            int courseId = resultSet.getInt("Course_id");
+            long courseId = resultSet.getInt("Course_id");
             String name = resultSet.getString("Name");
             int maxEnrollment = resultSet.getInt("MaxEnrollment");
             int totalCredits = resultSet.getInt("Credits");
-            int teacherId = resultSet.getInt("teacher_id");
+            long teacherId = resultSet.getInt("teacher_id");
 
-            List<Integer> studentList = new ArrayList<>();
+            List<Long> studentList = new ArrayList<>();
             String queryStudentsEnrolled = String.format("SELECT student_id FROM school.studentsenrolledtocourse WHERE course_id=%2d",courseId);
             Statement statement1 = connection.createStatement();
             ResultSet resultSet1 = statement1.executeQuery(queryStudentsEnrolled);
             while(resultSet1.next()){
-                studentList.add(resultSet1.getInt("student_id"));
+                studentList.add(resultSet1.getLong("student_id"));
             }
             statement1.close();
             courses.add(new Course(courseId, name, maxEnrollment, totalCredits, teacherId, studentList));
@@ -80,7 +80,7 @@ public class CourseRepository implements ICrudRepository<Course> {
 
         statement.execute(queryUpdate);
 
-        List<Integer> updatedStudents = obj.getStudentsEnrolled();
+        List<Long> updatedStudents = obj.getStudentsEnrolled();
 
         String queryEnrollment = String.format("SELECT student_id FROM school.studentsenrolledtocourse WHERE course_id=%2d", obj.getCourseId());
         Statement statement1 = connection.createStatement();
